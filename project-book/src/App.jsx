@@ -8,9 +8,9 @@ function App() {
   return (
     <>
       <MyNav />
-      <Welcome />
-      <AllTheBooks />
-      <MyFooter />
+      <Welcome title="Libri" />
+      <AllTheBooks variantButton="success" />
+      <MyFooter title="React" />
     </>
   );
 }

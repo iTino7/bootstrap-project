@@ -1,18 +1,54 @@
 import { Component } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Dropdown, Row } from "react-bootstrap";
 import fantasy from "../data/fantasy.json";
+import history from "../data/history.json";
+import horror from "../data/horror.json";
+import romance from "../data/romance.json";
+import scifi from "../data/scifi.json";
 
 class AllTheBooks extends Component {
   state = {
-    books: null,
+    books: fantasy,
   };
 
   render() {
     return (
       <>
         <Container>
+          <h2>Libri</h2>
+          <div>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Libri disponibili
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => this.setState({ books: horror })}>
+                  Horror
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => this.setState({ books: romance })}
+                >
+                  Romance
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => this.setState({ books: fantasy })}
+                >
+                  fantasy
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => this.setState({ books: history })}
+                >
+                  history
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => this.setState({ books: scifi })}>
+                  scifi
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           <Row>
-            {fantasy.slice(0, 20).map((item, index) => (
+            {this.state.books.slice(0, 18).map((item, index) => (
               <Col key={index} xs={12} sm={6} md={4} className="my-4 ">
                 <Card style={{ height: "100%", width: "80%" }}>
                   <Card.Img
@@ -30,7 +66,9 @@ class AllTheBooks extends Component {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </Card.Text>
-                    <Button variant="primary">{item.price}€</Button>
+                    <Button variant={this.props.variantButton}>
+                      {item.price}€
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

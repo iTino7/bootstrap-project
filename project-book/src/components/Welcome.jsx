@@ -1,11 +1,11 @@
 import { Alert, Container } from "react-bootstrap";
 
-function Welcome() {
+const  Welcome = (props) => {
   return (
     <>
       <Container>
         <Alert variant="primary" className="text-center fs-4 mt-3">
-           Libri Fantasy 🧙‍♂️
+           {props.title}
         </Alert>
       </Container>
     </>
